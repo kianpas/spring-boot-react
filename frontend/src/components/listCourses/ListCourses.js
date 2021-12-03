@@ -1,11 +1,7 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ListCourses = (props) => {
-  const [courseList, setCourseList] = useState([]);
-  //setCourseList(props.courseList);
-  console.log(props.courseList);
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
   const deleteHandler = (id) => {
     console.log(id);
@@ -19,6 +15,7 @@ const ListCourses = (props) => {
   const addHandler = () => {
     navigate("/courses/-1");
   };
+  
 
   return (
     <div className="container">
@@ -34,7 +31,7 @@ const ListCourses = (props) => {
             </tr>
           </thead>
           <tbody>
-            {courseList.map((course) => (
+            {props.courseList.map((course) => (
               <tr key={course.id}>
                 <td>{course.id}</td>
                 <td>{course.description}</td>

@@ -59,7 +59,7 @@ const CourseDetail = () => {
     console.log(value);
     let username = INSTRUCTOR;
 
-    let course = { id, description: value.description };
+    let course = { id, username, description: value.description };
 
     if (id === -1) {
       createCourse(username, course).then(() => navigate(`/courses`));
