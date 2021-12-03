@@ -2,8 +2,10 @@ import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const CourseDetail = () => {
+  const navigate = useNavigate();
   const param = useParams();
 
   const [id, setId] = useState();
@@ -23,11 +25,6 @@ const CourseDetail = () => {
     },
     [INSTRUCTOR_API_URL]
   );
-
-  //수정 제출 함수
-  const updateCourse = (event) => {
-    event.preventDefault();
-  };
 
   //유효성 검사
   const validate = (value) => {
@@ -49,13 +46,35 @@ const CourseDetail = () => {
     return;
   }
 
+  const updateCourse = async (name, id, course) => {
+    return await axios.put(`${INSTRUCTOR_API_URL}/courses/${id}`, course);
+  };
+
+  const createCourse = async (name, id, course) => {
+    return await axios.post(`${INSTRUCTOR_API_URL}/courses`, course);
+  };
+
+  //수정 제출 함수
+  const submitCourse = (value) => {
+    console.log(value);
+    let username = INSTRUCTOR;
+
+    let course = { id, description: value.description };
+
+    if (id === -1) {
+      createCourse(username, course).then(() => navigate(`/courses`));
+    } else {
+      updateCourse(username, id, course).then(() => navigate(`/courses`));
+    }
+  };
+
   return (
     <div>
       <h3>Course</h3>
       <div className="container">
         <Formik
           initialValues={{ id: id || "", description: description || "" }}
-          onSubmit={updateCourse}
+          onSubmit={submitCourse}
           validateOnChange={false}
           validateOnBlur={false}
           validate={validate}
@@ -63,6 +82,11 @@ const CourseDetail = () => {
         >
           {(props) => (
             <Form>
+              <ErrorMessage
+                name="description"
+                component="div"
+                className="alert alert-warning"
+              />
               <fieldset className="form-group">
                 <label>Id</label>
                 <Field

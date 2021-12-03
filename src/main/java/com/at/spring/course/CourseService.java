@@ -17,8 +17,7 @@ public class CourseService {
 		courses.add(new Course(++idCounter, "in28minutes", "Master Microservices with Spring Boot and Spring Cloud"));
 		courses.add(new Course(++idCounter, "in28minutes",
 				"Deploy Spring Boot Microservices to Cloud with Docker and Kubernetes"));
-		courses.add(new Course(++idCounter, "in28minutes",
-				"Learn Full stack with Spring Boot and Vue"));
+		courses.add(new Course(++idCounter, "in28minutes", "Learn Full stack with Spring Boot and Vue"));
 	}
 
 	// 전체 조회
@@ -53,5 +52,20 @@ public class CourseService {
 			return course;
 		}
 		return null;
+	}
+
+	// 저장
+	public Course save(Course course) {
+		//기존 값이 없을 경우 
+		if (course.getId() == -1 || course.getId() == 0) {
+			course.setId(++idCounter);
+			courses.add(course);
+		} else {
+			//기존 값이 없을 경우 수정
+			deleteById(course.getId());
+			courses.add(course);
+		}
+
+		return course;
 	}
 }

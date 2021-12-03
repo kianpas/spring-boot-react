@@ -1,5 +1,10 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 const ListCourses = (props) => {
+  const [courseList, setCourseList] = useState([]);
+  //setCourseList(props.courseList);
+  console.log(props.courseList);
   const navigate = useNavigate();
 
   const deleteHandler = (id) => {
@@ -29,7 +34,7 @@ const ListCourses = (props) => {
             </tr>
           </thead>
           <tbody>
-            {props.courseList.map((course) => (
+            {courseList.map((course) => (
               <tr key={course.id}>
                 <td>{course.id}</td>
                 <td>{course.description}</td>
@@ -59,7 +64,9 @@ const ListCourses = (props) => {
         </table>
       </div>
       <div className="row">
-        <button className="btn btn-success" onClick={addHandler}>Add</button>
+        <button className="btn btn-success" onClick={addHandler}>
+          Add
+        </button>
       </div>
     </div>
   );
