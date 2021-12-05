@@ -18,7 +18,6 @@ function App() {
 
   // 첫번째 렌더링을 다 마친 후 실행합니다.
   useEffect(() => {
-    //한번만 실행되도록, 페지데이터
     const fetchData = async () => {
       try {
         const response = await axios.get(`${INSTRUCTOR_API_URL}/courses`);

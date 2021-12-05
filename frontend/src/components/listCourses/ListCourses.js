@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import CourseItem from "./CourseItem";
 
 const ListCourses = (props) => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const deleteHandler = (id) => {
     console.log(id);
@@ -15,7 +16,6 @@ const ListCourses = (props) => {
   const addHandler = () => {
     navigate("/courses/-1");
   };
-  
 
   return (
     <div className="container">
@@ -32,30 +32,11 @@ const ListCourses = (props) => {
           </thead>
           <tbody>
             {props.courseList.map((course) => (
-              <tr key={course.id}>
-                <td>{course.id}</td>
-                <td>{course.description}</td>
-                <td>
-                  <button
-                    className="btn btn-success"
-                    onClick={(e) => {
-                      updateHandler(course.id);
-                    }}
-                  >
-                    Update
-                  </button>
-                </td>
-                <td>
-                  <button
-                    className="btn btn-warning"
-                    onClick={(e) => {
-                      deleteHandler(course.id);
-                    }}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
+              <CourseItem
+                course={course}
+                updateHandler={updateHandler}
+                deleteHandler={deleteHandler}
+              />
             ))}
           </tbody>
         </table>

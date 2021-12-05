@@ -1,4 +1,4 @@
-package com.at.spring.course;
+package com.at.spring.course.web;
 
 import java.net.URI;
 import java.util.List;
@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.at.spring.course.model.service.CourseService;
+import com.at.spring.course.model.vo.Course;
 
 @CrossOrigin(origins = { "http://localhost:3000", "http://localhost:4200" })
 @RestController

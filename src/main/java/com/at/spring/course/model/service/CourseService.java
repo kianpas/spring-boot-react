@@ -1,9 +1,11 @@
-package com.at.spring.course;
+package com.at.spring.course.model.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+
+import com.at.spring.course.model.vo.Course;
 
 @Service
 public class CourseService {

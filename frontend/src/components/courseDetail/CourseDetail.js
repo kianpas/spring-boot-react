@@ -62,9 +62,11 @@ const CourseDetail = () => {
     let course = { id, username, description: value.description };
 
     if (id === -1) {
-      createCourse(username, course).then(() => navigate(`/courses`));
+      createCourse(username, course);
+      navigate(`/courses`);
     } else {
-      updateCourse(username, id, course).then(() => navigate(`/courses`));
+      updateCourse(username, id, course);
+      navigate(`/courses`);
     }
   };
 

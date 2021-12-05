@@ -1,4 +1,4 @@
-package com.at.spring.course;
+package com.at.spring.course.model.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
