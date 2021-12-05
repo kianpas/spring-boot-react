@@ -1,7 +1,4 @@
-
-
 const CourseItem = (props) => {
-  
   return (
     <tr key={props.course.id}>
       <td>{props.course.id}</td>
